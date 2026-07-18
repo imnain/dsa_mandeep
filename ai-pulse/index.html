@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Pulse — the signal, not the noise</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper: #f5f4f1;
+    --ink: #15171b;
+    --muted: #6b6f76;
+    --line: #e2ded5;
+    --signal: #d8632a;
+    --signal-soft: rgba(216, 99, 42, 0.12);
+    --card: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171c;
+      --ink: #f1efe9;
+      --muted: #9aa0a8;
+      --line: rgba(255, 255, 255, 0.09);
+      --signal: #ff8a4c;
+      --signal-soft: rgba(255, 138, 76, 0.16);
+      --card: #1b1e24;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #14171c;
+    --ink: #f1efe9;
+    --muted: #9aa0a8;
+    --line: rgba(255, 255, 255, 0.09);
+    --signal: #ff8a4c;
+    --signal-soft: rgba(255, 138, 76, 0.16);
+    --card: #1b1e24;
+  }
+
+  :root[data-theme="light"] {
+    --paper: #f5f4f1;
+    --ink: #15171b;
+    --muted: #6b6f76;
+    --line: #e2ded5;
+    --signal: #d8632a;
+    --signal-soft: rgba(216, 99, 42, 0.12);
+    --card: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    line-height: 1.55;
+    padding: 0 20px 80px;
+  }
+
+  a { color: var(--signal); }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  header.masthead {
+    padding: 44px 0 22px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kicker {
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+
+  h1.title {
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.9rem, 5vw, 2.5rem);
+    letter-spacing: -0.01em;
+    margin: 6px 0 8px;
+    text-wrap: balance;
+  }
+
+  .tagline {
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0 0 14px;
+    max-width: 52ch;
+  }
+
+  .updated {
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  nav.jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 18px;
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+
+  nav.jump a {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+
+  nav.jump a:hover { color: var(--signal); border-color: var(--signal); }
+
+  section.pulse-section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 16px;
+  }
+
+  section.pulse-section:last-of-type { border-bottom: none; }
+
+  h2.section-title {
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .section-count {
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+
+  .section-sub {
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin: 0 0 22px;
+  }
+
+  .entries { display: flex; flex-direction: column; gap: 20px; }
+
+  article.entry {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--signal);
+    background: var(--signal-soft);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+
+  .entry-date {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  h3.entry-title {
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+
+  p.entry-why {
+    margin: 0 0 12px;
+    font-size: 0.98rem;
+    color: var(--ink);
+  }
+
+  .entry-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 0.78rem;
+  }
+
+  .entry-sources a { text-decoration: none; }
+  .entry-sources a:hover { text-decoration: underline; }
+
+  .quiet {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.98rem;
+  }
+
+  footer.foot {
+    padding-top: 34px;
+    font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <div class="kicker">AI Pulse</div>
+      <h1 class="title">The signal, not the noise.</h1>
+      <p class="tagline">Every day, thousands of "breakthroughs" get announced. Almost none matter. This page only lists the ones that do — filtered, not summarized from everything.</p>
+      <div class="updated">Last updated July 18, 2026</div>
+      <nav class="jump">
+        <a href="#today">Today</a>
+        <a href="#week">This Week</a>
+        <a href="#month">This Month</a>
+        <a href="#year">This Year</a>
+      </nav>
+    </header>
+
+    <section class="pulse-section" id="today">
+      <h2 class="section-title">Today <span class="section-count"></span></h2>
+      <p class="section-sub">What's genuinely new as of today.</p>
+      <div class="entries"><p class="quiet">Nothing cleared the bar today. Most days won't — that's expected.</p></div>
+    </section>
+
+    <section class="pulse-section" id="week">
+      <h2 class="section-title">This Week <span class="section-count">(2)</span></h2>
+      <p class="section-sub">New in the last 7 days, not already covered above.</p>
+      <div class="entries">
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Research</span>
+        <span class="entry-date">2026-07-15</span>
+      </div>
+      <h3 class="entry-title">&quot;Selective activation sparsity&quot; lets small models match 3x-larger ones</h3>
+      <p class="entry-why">If a model can only activate the parameters relevant to a given task, it needs far less compute to run at the same quality — a real lever on inference cost and on-device AI, not an incremental tweak.</p>
+      <div class="entry-sources"><a href="https://skycrumbs.com/blog/ai-research-july-2026" target="_blank" rel="noopener">Skycrumbs</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Research</span>
+        <span class="entry-date">2026-07-12</span>
+      </div>
+      <h3 class="entry-title">DeepMind&#x27;s math-reasoning model scores top 1% on IMO problems</h3>
+      <p class="entry-why">International Mathematical Olympiad problems are among the hardest math competition problems given to humans. Top-1% performance is a genuine reasoning milestone, not a benchmark-gaming one.</p>
+      <div class="entry-sources"><a href="https://skycrumbs.com/blog/ai-research-july-2026" target="_blank" rel="noopener">Skycrumbs</a></div>
+    </article></div>
+    </section>
+
+    <section class="pulse-section" id="month">
+      <h2 class="section-title">This Month <span class="section-count">(4)</span></h2>
+      <p class="section-sub">New in the last 30 days, not already covered above.</p>
+      <div class="entries">
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Model Release</span>
+        <span class="entry-date">2026-07-10</span>
+      </div>
+      <h3 class="entry-title">GPT-5.6, Grok 4.5, Muse Spark 1.1, and Claude Sonnet 5 all ship within days of each other</h3>
+      <p class="entry-why">Four frontier labs released flagship models in the same week, triggering a price war that&#x27;s pushing inference costs to record lows. The competitive dynamic is now the story — not any single model.</p>
+      <div class="entry-sources"><a href="https://llm-stats.com/ai-news" target="_blank" rel="noopener">llm-stats.com</a> &middot; <a href="https://www.aiapps.com/blog/july-ai-mega-update-major-breakthroughs-launches/" target="_blank" rel="noopener">AIapps</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Research</span>
+        <span class="entry-date">2026-07-09</span>
+      </div>
+      <h3 class="entry-title">Ames Laboratory&#x27;s DuctGPT discovers rare-earth-free permanent magnets</h3>
+      <p class="entry-why">A physics-trained model invented new, cheaper-to-source materials while accounting for production cost — a real case of AI doing original materials-science discovery, not just prediction.</p>
+      <div class="entry-sources"><a href="https://www.aiapps.com/blog/july-ai-mega-update-major-breakthroughs-launches/" target="_blank" rel="noopener">AIapps</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Model Release</span>
+        <span class="entry-date">2026-07-08</span>
+      </div>
+      <h3 class="entry-title">GPT-Live-1 becomes OpenAI&#x27;s default voice model for Go, Plus, and Pro</h3>
+      <p class="entry-why">Voice moves from a bolt-on feature to the default interaction mode for hundreds of millions of users overnight.</p>
+      <div class="entry-sources"><a href="https://llm-stats.com/llm-updates" target="_blank" rel="noopener">llm-stats.com</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Infrastructure</span>
+        <span class="entry-date">2026-06-18</span>
+      </div>
+      <h3 class="entry-title">Eli Lilly brings LillyPod online — pharma&#x27;s most powerful AI supercomputer</h3>
+      <p class="entry-why">Traditional wet labs test ~2,000 molecular hypotheses a year; LillyPod can simulate billions in parallel. This is AI compute translating directly into drug-discovery speed, not just chatbot quality.</p>
+      <div class="entry-sources"><a href="https://thenewstack.io/biggest-ai-moments-2026/" target="_blank" rel="noopener">The New Stack</a></div>
+    </article></div>
+    </section>
+
+    <section class="pulse-section" id="year">
+      <h2 class="section-title">This Year <span class="section-count">(2)</span></h2>
+      <p class="section-sub">New in the last 365 days, not already covered above.</p>
+      <div class="entries">
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Model Release</span>
+        <span class="entry-date">2026-06-10</span>
+      </div>
+      <h3 class="entry-title">Moonshot AI releases Kimi K3, the world&#x27;s largest open-weight model</h3>
+      <p class="entry-why">The largest open-weight model in existence now comes from outside the usual US labs. It resets what &quot;open source frontier model&quot; means and pressures every closed lab&#x27;s pricing.</p>
+      <div class="entry-sources"><a href="https://thenewstack.io/biggest-ai-moments-2026/" target="_blank" rel="noopener">The New Stack</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="tag">Policy</span>
+        <span class="entry-date">2026-05-20</span>
+      </div>
+      <h3 class="entry-title">US Commerce Dept. orders Anthropic to pull Fable 5 and Mythos 5 offline worldwide</h3>
+      <p class="entry-why">A national government forced a frontier lab to yank live models globally, then reversed course 18 days later. It&#x27;s the clearest sign yet that AI models are now treated as export-controlled, geopolitically sensitive assets — not just products.</p>
+      <div class="entry-sources"><a href="https://thenewstack.io/biggest-ai-moments-2026/" target="_blank" rel="noopener">The New Stack</a></div>
+    </article></div>
+    </section>
+
+    <footer class="foot">
+      Sources: official lab announcements, arXiv, and reputable tech press. Rebuilt daily. Silence in a section means nothing that section's window met the bar — that's a feature, not a bug.
+    </footer>
+  </div>
+</body>
+</html>

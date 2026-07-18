@@ -1,0 +1,77 @@
+{
+  "entries": [
+    {
+      "date": "2026-05-20",
+      "title": "US Commerce Dept. orders Anthropic to pull Fable 5 and Mythos 5 offline worldwide",
+      "category": "policy",
+      "why_it_matters": "A national government forced a frontier lab to yank live models globally, then reversed course 18 days later. It's the clearest sign yet that AI models are now treated as export-controlled, geopolitically sensitive assets — not just products.",
+      "sources": [
+        { "name": "The New Stack", "url": "https://thenewstack.io/biggest-ai-moments-2026/" }
+      ]
+    },
+    {
+      "date": "2026-06-10",
+      "title": "Moonshot AI releases Kimi K3, the world's largest open-weight model",
+      "category": "model-release",
+      "why_it_matters": "The largest open-weight model in existence now comes from outside the usual US labs. It resets what \"open source frontier model\" means and pressures every closed lab's pricing.",
+      "sources": [
+        { "name": "The New Stack", "url": "https://thenewstack.io/biggest-ai-moments-2026/" }
+      ]
+    },
+    {
+      "date": "2026-06-18",
+      "title": "Eli Lilly brings LillyPod online — pharma's most powerful AI supercomputer",
+      "category": "infrastructure",
+      "why_it_matters": "Traditional wet labs test ~2,000 molecular hypotheses a year; LillyPod can simulate billions in parallel. This is AI compute translating directly into drug-discovery speed, not just chatbot quality.",
+      "sources": [
+        { "name": "The New Stack", "url": "https://thenewstack.io/biggest-ai-moments-2026/" }
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "title": "GPT-Live-1 becomes OpenAI's default voice model for Go, Plus, and Pro",
+      "category": "model-release",
+      "why_it_matters": "Voice moves from a bolt-on feature to the default interaction mode for hundreds of millions of users overnight.",
+      "sources": [
+        { "name": "llm-stats.com", "url": "https://llm-stats.com/llm-updates" }
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "title": "Ames Laboratory's DuctGPT discovers rare-earth-free permanent magnets",
+      "category": "research",
+      "why_it_matters": "A physics-trained model invented new, cheaper-to-source materials while accounting for production cost — a real case of AI doing original materials-science discovery, not just prediction.",
+      "sources": [
+        { "name": "AIapps", "url": "https://www.aiapps.com/blog/july-ai-mega-update-major-breakthroughs-launches/" }
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "title": "GPT-5.6, Grok 4.5, Muse Spark 1.1, and Claude Sonnet 5 all ship within days of each other",
+      "category": "model-release",
+      "why_it_matters": "Four frontier labs released flagship models in the same week, triggering a price war that's pushing inference costs to record lows. The competitive dynamic is now the story — not any single model.",
+      "sources": [
+        { "name": "llm-stats.com", "url": "https://llm-stats.com/ai-news" },
+        { "name": "AIapps", "url": "https://www.aiapps.com/blog/july-ai-mega-update-major-breakthroughs-launches/" }
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "title": "DeepMind's math-reasoning model scores top 1% on IMO problems",
+      "category": "research",
+      "why_it_matters": "International Mathematical Olympiad problems are among the hardest math competition problems given to humans. Top-1% performance is a genuine reasoning milestone, not a benchmark-gaming one.",
+      "sources": [
+        { "name": "Skycrumbs", "url": "https://skycrumbs.com/blog/ai-research-july-2026" }
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "title": "\"Selective activation sparsity\" lets small models match 3x-larger ones",
+      "category": "research",
+      "why_it_matters": "If a model can only activate the parameters relevant to a given task, it needs far less compute to run at the same quality — a real lever on inference cost and on-device AI, not an incremental tweak.",
+      "sources": [
+        { "name": "Skycrumbs", "url": "https://skycrumbs.com/blog/ai-research-july-2026" }
+      ]
+    }
+  ]
+}
